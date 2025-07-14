@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vinyl Coffee</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Helvetica', sans-serif;
+      color: #d20000;
+      background-color: #ffb6c1;
+      overflow-x: hidden;
+    }
+
+    p {
+      font-family: 'Helvetica', sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #d20000;
+    }
+
+    header {
+      background: #ffb6c1;
+      padding: 3rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-family: 'Brush Script MT', cursive;
+    }
+
+    header p {
+      font-weight: bold;
+      font-family: 'Brush Script MT', cursive;
+    }
+
+    section {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .parallax,
+    .parallax2,
+    .parallax3,
+    .parallax4 {
+      min-height: 400px;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .parallax {
+      background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1350&q=80');
+      min-height: 500px;
+    }
+
+    .parallax2 {
+      background-image: url('https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?auto=format&fit=crop&w=1350&q=80');
+    }
+
+    .parallax3 {
+      background-image: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1350&q=80');
+    }
+
+    .parallax4 {
+      background-image: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1350&q=80');
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 600px;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      font-family: 'Helvetica', sans-serif;
+    }
+
+    .sabores,
+    .cantores {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .sabores span,
+    .cantores span {
+      position: relative;
+      background: #ffe4ec;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .sabores span:hover,
+    .cantores span:hover {
+      background-color: #ffd1dc;
+    }
+
+    /* Tooltip para cantores (texto) */
+    .cantores span:hover::after {
+      content: attr(data-info);
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 12px;
+      white-space: nowrap;
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .cantores span:hover::after {
+      opacity: 1;
+    }
+
+    .cantores span:hover::before {
+      content: '';
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 8px;
+      border-style: solid;
+      border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .cantores span:hover::before {
+      opacity: 1;
+    }
+
+    /* Tooltip para sabores (texto) */
+    .sabores span:hover::after {
+      content: attr(data-info);
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 12px;
+      white-space: nowrap;
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .sabores span:hover::after {
+      opacity: 1;
+    }
+
+    .sabores span:hover::before {
+      content: '';
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 8px;
+      border-style: solid;
+      border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .sabores span:hover::before {
+      opacity: 1;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      color: #d20000;
+      font-weight: bold;
+      font-family: 'Helvetica', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>The Vinyl Coffee</h1>
+    <p>Misturando o melhor entre dois mundos</p>
+  </header>
+
+  <div class="parallax"></div>
+
+  <section>
+    <div class="card">
+      <h2>🍒Cantores🍒</h2>
+      <div class="cantores">
+        <span data-info="Ariana, pop com doçura e personalidade.">Ariana Grande</span>
+        <span data-info="Atmosfera suave e única.">Billie Eilish</span>
+        <span data-info="Energia intensa e marcante.">Travis Scott</span>
+        <span data-info="R&B alternativo e poderoso.">SZA</span>
+        <span data-info="Frescor jovem e atual.">Sabrina Carpenter</span>
+        <span data-info="Clássicos latinos e nostalgia.">RBD</span>
+        <span data-info="Ritmo urbano e crítica social.">Kendrick Lamar</span>
+        <span data-info="Mistura de raízes e pop.">Camila Cabello</span>
+        <span data-info="Estilo misterioso e refinado.">The Weeknd</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="parallax2"></div>
+
+  <section>
+    <div class="card">
+      <h2>🍒Sabores🍒</h2>
+      <div class="sabores">
+        <span data-info="Café com aroma doce e refrescante de morango.">Morango</span>
+        <span data-info="Sabor herbal intenso com toque amargo e refrescante do mate.">Mate</span>
+        <span data-info="Notas cítricas e vibrantes, trazendo frescor de limão.">Limão</span>
+        <span data-info="Toque refrescante e mentolado da menta para equilibrar o café.">Menta</span>
+        <span data-info="Textura cremosa e suave que harmoniza com o café.">Creme</span>
+        <span data-info="Sabor marcante e levemente adocicado do capuccino.">Capuccino</span>
+        <span data-info="Chocolate intenso e aveludado que complementa o café.">Chocolate</span>
+        <span data-info="Doçura natural e suave da banana com café quente.">Banana</span>
+        <span data-info="Sabor leve e ácido do iogurte natural, equilibrando o café.">Iogurte natural</span>
+        <span data-info="Doçura caramelizada que traz conforto ao café.">Caramelo</span>
+        <span data-info="Aroma delicado e sabor doce da baunilha no café.">Baunilha</span>
+        <span data-info="Mistura suave de leite e café, cremoso e aconchegante.">Latte</span>
+        <span data-info="Combinação rica e doce do café com chocolate do moka.">Moka</span>
+        <span data-info="Sabor intenso e puro do café tradicional.">Café</span>
+        <span data-info="Toque frutado e adocicado do mirtilo no café.">Mirtilo</span>
+        <span data-info="Notas doces e frescas da uva harmonizadas ao café.">Uva</span>
+        <span data-info="Sabor marcante e levemente ácido da amora com café.">Amora</span>
+        <span data-info="Doçura vibrante e suculenta da cereja combinada ao café.">Cereja</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="parallax3"></div>
+
+  <section>
+    <div class="card">
+      <h2>🍒Opções🍒</h2>
+      <p>Você também pode retirar sabores e escolher opções veganas e zero lactose!</p>
+    </div>
+  </section>
+
+  <div class="parallax4"></div>
+
+  <section>
+    <div class="card">
+      <h2>🍒Em breve novidades!🍒</h2>
+      <p>2025</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Vinyl Coffee - todos os direitos reservados
+  </footer>
+</body>
+</html>
